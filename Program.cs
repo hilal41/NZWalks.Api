@@ -15,7 +15,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<WalksDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
+
+// injected my Repositories 
 builder.Services.AddScoped<IRegionRepository, SQLRegionRepository>();
+builder.Services.AddScoped<IwalkRepository, SQLWalkRepository >();
 
 builder.Services.AddAutoMapper(typeof(AutoMappingProfiles));
 
