@@ -6,5 +6,6 @@ namespace NZWalks.Api.Repositorys
     {
 
      Task<Walk> CreateAsync(Walk walk);
+        Task<Walk> GetWalkasync ();
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace NZWalks.Api.Models.Domain.DTO.WalksDTOs
 {
-    public class walkDTo
+    public class WalkDto
     {
         public Guid Id { get; set; }
 
