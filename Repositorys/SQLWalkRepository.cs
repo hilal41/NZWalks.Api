@@ -21,18 +21,10 @@ namespace NZWalks.Api.Repositorys
             return walk;
         }
 
-        // Get the first walk
-        public async Task<Walk?> GetFirstWalkAsync()
+        public async Task<List<Walk>> GetAllAsync()
+
         {
-            return await walksDbContext.walks.FirstOrDefaultAsync();
-        }
-        public async Task<Walk> GetWalkasync()
-        {
-            // Example implementation: return the first walk or throw if not found
-            var walk = await walksDbContext.walks.FirstOrDefaultAsync();
-            if (walk == null)
-                throw new InvalidOperationException("No walks found.");
-            return walk;
+          return   await walksDbContext.walks.Include("Difficulty").Include("Region").ToListAsync();
         }
     }
 }

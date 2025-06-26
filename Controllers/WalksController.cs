@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
 using NZWalks.Api.Models.Domain;
 using NZWalks.Api.Models.Domain.DTO.WalksDTOs;
@@ -15,64 +15,36 @@ namespace NZWalks.Api.Controllers
         private readonly IMapper mapper;
         private readonly IwalkRepository iwalkRepository;
 
-        public WalksController(IMapper mapper , IwalkRepository iwalkRepository)
+        public WalksController(IMapper mapper, IwalkRepository iwalkRepository)
         {
             this.mapper = mapper;
             this.iwalkRepository = iwalkRepository;
-
-
-
         }
 
         [HttpPost]
-        public  async Task<IActionResult> Create([FromBody]AddWalksDTO addWalksDTO)
+        public async Task<IActionResult> Create([FromBody] AddWalksDTO addWalksDTO)
         {
-             // map DTO to domain Model
+            // map DTO to domain Model
 
-           var   walksDominModel = mapper.Map<Walk>(addWalksDTO);
+            var walksDominModel = mapper.Map<Walk>(addWalksDTO);
 
             await iwalkRepository.CreateAsync(walksDominModel);
 
-            return Ok(mapper.Map <WalkDto>(walksDominModel));
- 
+            return Ok(mapper.Map<AddWalksDTO>(walksDominModel));
+
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllWalks()
         {
+            var walksDominModel = await iwalkRepository.GetAllAsync();
 
-            var walks = await iwalkRepository.GetWalkasync();
+            // map domain model to DTO
 
-            if (walks == null)
-            {
-                return NotFound("No walks found.");
-            }
-            // Map the domain model to DTO
-
-            var walksDTO = mapper.Map<WalkDto>(walks);
-
-            return Ok(walksDTO);
-
-
-
-
-
-
-
-
+            return Ok(mapper.Map<List<WalksDTO>>(walksDominModel));
 
 
         }
 
-
-
-
-
-
-
-
     }
-
-     
-
 }
