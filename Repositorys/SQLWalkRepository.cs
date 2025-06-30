@@ -21,7 +21,7 @@ namespace NZWalks.Api.Repositorys
             return walk;
         }
 
-
+<<<<<<< HEAD
         //  Get all walks (this is the method your controller needs)
         public async Task<List<Walk>> GetAllWalksAsync()
         {
@@ -32,13 +32,12 @@ namespace NZWalks.Api.Repositorys
         public async Task<Walk?> GetFirstWalkAsync()
         {
             return await walksDbContext.walks.FirstOrDefaultAsync();
-        }
-
+=======
         public async Task<List<Walk>> GetAllAsync()
 
         {
           return   await walksDbContext.walks.Include("Difficulty").Include("Region").ToListAsync();
-
+>>>>>>> 17f82891e952a9c4ddb0a8980264179447c9a2d0
         }
     }
 }
