@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
 using NZWalks.Api.Models.Domain;
 using NZWalks.Api.Models.Domain.DTO.WalksDTOs;
@@ -15,28 +15,37 @@ namespace NZWalks.Api.Controllers
         private readonly IMapper mapper;
         private readonly IwalkRepository iwalkRepository;
 
-        public WalksController(IMapper mapper , IwalkRepository iwalkRepository)
+        public WalksController(IMapper mapper, IwalkRepository iwalkRepository)
         {
             this.mapper = mapper;
             this.iwalkRepository = iwalkRepository;
         }
 
         [HttpPost]
-        public  async Task<IActionResult> Create([FromBody]AddWalksDTO addWalksDTO)
+        public async Task<IActionResult> Create([FromBody] AddWalksDTO addWalksDTO)
         {
-             // map DTO to domain Model
+            // map DTO to domain Model
 
-           var   walksDominModel = mapper.Map<Walk>(addWalksDTO);
+            var walksDominModel = mapper.Map<Walk>(addWalksDTO);
 
             await iwalkRepository.CreateAsync(walksDominModel);
 
+<<<<<<< HEAD
             return Ok(mapper.Map <WalkDto>(walksDominModel));
  
         } 
+=======
+            return Ok(mapper.Map<AddWalksDTO>(walksDominModel));
+
+        }
+
+>>>>>>> 17f82891e952a9c4ddb0a8980264179447c9a2d0
         [HttpGet]
         public async Task<IActionResult> GetAllWalks()
         {
+            var walksDominModel = await iwalkRepository.GetAllAsync();
 
+<<<<<<< HEAD
             var walks = await iwalkRepository.GetAllWalksAsync();
 
             if (walks == null)
@@ -48,11 +57,14 @@ namespace NZWalks.Api.Controllers
             var walksDTO = mapper.Map<List<WalkDto>>(walks);
 
             return Ok(walksDTO);
+=======
+            // map domain model to DTO
+
+            return Ok(mapper.Map<List<WalksDTO>>(walksDominModel));
+
+>>>>>>> 17f82891e952a9c4ddb0a8980264179447c9a2d0
 
         }
 
     }
-
-     
-
 }
