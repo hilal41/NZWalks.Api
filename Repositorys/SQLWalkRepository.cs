@@ -13,7 +13,7 @@ namespace NZWalks.Api.Repositorys
             this.walksDbContext = walksDbContext;
         }
 
-        // Create a new walk
+        //  Create a new walk
         public async Task<Walk> CreateAsync(Walk walk)
         {
             await walksDbContext.walks.AddAsync(walk);
@@ -21,18 +21,16 @@ namespace NZWalks.Api.Repositorys
             return walk;
         }
 
-        // Get the first walk
+        //  Get all walks (this is the method your controller needs)
+        public async Task<List<Walk>> GetAllWalksAsync()
+        {
+            return await walksDbContext.walks.ToListAsync();
+        }
+
+        //  (Optional) Get the first walk
         public async Task<Walk?> GetFirstWalkAsync()
         {
             return await walksDbContext.walks.FirstOrDefaultAsync();
-        }
-        public async Task<Walk> GetWalkasync()
-        {
-            // Example implementation: return the first walk or throw if not found
-            var walk = await walksDbContext.walks.FirstOrDefaultAsync();
-            if (walk == null)
-                throw new InvalidOperationException("No walks found.");
-            return walk;
         }
     }
 }

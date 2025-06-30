@@ -1,11 +1,8 @@
-﻿using NZWalks.Api.Models.Domain;
+﻿
+using NZWalks.Api.Models.Domain;
 
-namespace NZWalks.Api.Repositorys
+public interface IwalkRepository
 {
-    public interface IwalkRepository 
-    {
-
-     Task<Walk> CreateAsync(Walk walk);
-        Task<Walk> GetWalkasync ();
-    }
-}
+    Task<Walk> CreateAsync(Walk walk);
+    Task<List<Walk>> GetAllWalksAsync();       
+    Task<Walk?> GetFirstWalkAsync();          

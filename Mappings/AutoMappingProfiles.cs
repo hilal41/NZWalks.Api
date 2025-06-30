@@ -15,8 +15,8 @@ namespace NZWalks.Api.Mappings
             CreateMap<Region, updateRegionDto>().ReverseMap();
 
             // Walks mappings
-            CreateMap<AddWalksDTO, Walk>().ReverseMap();
-            CreateMap<WalkDto, Walk>().ReverseMap(); // ✅ fixed line
+            CreateMap<Walk, WalkDto>().ReverseMap();        
+            CreateMap<AddWalksDTO, Walk>().ReverseMap();   
         }
     }
 }

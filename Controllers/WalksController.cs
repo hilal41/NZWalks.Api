@@ -19,9 +19,6 @@ namespace NZWalks.Api.Controllers
         {
             this.mapper = mapper;
             this.iwalkRepository = iwalkRepository;
-
-
-
         }
 
         [HttpPost]
@@ -35,41 +32,24 @@ namespace NZWalks.Api.Controllers
 
             return Ok(mapper.Map <WalkDto>(walksDominModel));
  
-        }
-
+        } 
         [HttpGet]
         public async Task<IActionResult> GetAllWalks()
         {
 
-            var walks = await iwalkRepository.GetWalkasync();
+            var walks = await iwalkRepository.GetAllWalksAsync();
 
             if (walks == null)
             {
                 return NotFound("No walks found.");
             }
             // Map the domain model to DTO
-
-            var walksDTO = mapper.Map<WalkDto>(walks);
+            // This is where the AutoMapper comes into play
+            var walksDTO = mapper.Map<List<WalkDto>>(walks);
 
             return Ok(walksDTO);
 
-
-
-
-
-
-
-
-
-
         }
-
-
-
-
-
-
-
 
     }
 
