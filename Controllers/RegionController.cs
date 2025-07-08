@@ -10,14 +10,14 @@ namespace NZWalks.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ApiController : ControllerBase
+    public class RegionController : ControllerBase
     {
         private readonly WalksDbContext DbContext;
         private readonly IMapper mapper;
 
         public IRegionRepository RegionRepository { get; }
 
-        public ApiController(WalksDbContext dbContext, IRegionRepository regionRepository, IMapper mapper)
+        public RegionController(WalksDbContext dbContext, IRegionRepository regionRepository, IMapper mapper)
         {
             DbContext = dbContext;
             RegionRepository = regionRepository;
