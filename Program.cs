@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using NZWalks.Api.CustomActionFilter;
 using NZWalks.Api.Data;
 using NZWalks.Api.Mappings;
 using NZWalks.Api.Repositorys;
@@ -21,6 +22,7 @@ builder.Services.AddScoped<IRegionRepository, SQLRegionRepository>();
 builder.Services.AddScoped<IwalkRepository, SQLWalkRepository >();
 
 builder.Services.AddAutoMapper(typeof(AutoMappingProfiles));
+
 
 
 
